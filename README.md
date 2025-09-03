@@ -2,6 +2,24 @@
 
 This is the React app to demo communications between components; Global Redux State.
 
+- Communication between components
+  - Unidirectional Data Flow: 
+    Parent passes data down via props
+    Child communicates up via function callbacks
+  - Lifting State Up  (e.g. MessageParent, Sender, Receiver components):
+    When siblings need to share data, move state to common parent
+    Pass state and setters as props to children
+  - Prop Drilling Alternative:
+    For deep component trees, consider (e.g. Header component):
+        Context API : createContext and useMemo to avoid recomputing same value unnecessarily
+        Global State management libraries (Redux, Zustand). e.g. store, counterSlice, todosSlice 
+
+- React Hooks (useState, useEffect, useContext, useRef, useCallback, useMemo)
+  - useCallback Hook is used to memoize a callback function.
+  - useMemo Hook returns a memoized value.
+  - useReducer Hook: for custom state/complex logic.
+  - useEffect Hook: to perform side effects, fetching data, directly updating the DOM, and timers 
+
 - init app
 	cd React
     npm init react-app myreactapp1

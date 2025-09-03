@@ -1,5 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import Header from '../../components/Header';
 import {
     selectCount,
     increment,
@@ -14,6 +15,7 @@ export function Counter() {
     const count = useSelector(selectCount);
     const dispatch = useDispatch();
     const [incrementAmount, setIncrementAmount] = useState('2');
+    const [calculation, setCalculation] = useState(0);
     const [error, setError] = useState('');
 
     const handleInputChange = useCallback((e) => {
@@ -44,14 +46,22 @@ export function Counter() {
         dispatch(incrementAsync(amount));
     }, [dispatch, incrementAmount]);
 
+    useEffect(() => {
+        setTimeout(() => {
+            setCalculation(() => count * 2);
+        }, 1000);
+    }, [count]);
+
     return (
         <div style={{ padding: '20px', textAlign: 'center' }}>
-            <h2>Redux Count: {count} </h2>
+            <Header />
+
+            <h2>Redux Count: {count}, calculation: {calculation} </h2>
 
             <div style={{ margin: '10px 0' }}>
                 <button
                     onClick={() => dispatch(increment())}
-                    className="app-btn" 
+                    className="app-btn"
                     aria-label="Increment value"
                 >
                     +
@@ -59,7 +69,7 @@ export function Counter() {
 
                 <button
                     onClick={() => dispatch(decrement())}
-                    className="app-btn" 
+                    className="app-btn"
                     aria-label="Decrement value"
                 >
                     -
@@ -67,7 +77,7 @@ export function Counter() {
 
                 <button
                     onClick={() => dispatch(reset())}
-                    className="app-btn" 
+                    className="app-btn"
                     aria-label="Reset counter"
                 >
                     Reset
@@ -83,14 +93,14 @@ export function Counter() {
                 />
                 <button
                     onClick={handleAddAmount}
-                    className="app-btn" 
+                    className="app-btn"
                     aria-label="Add amount"
                 >
                     Add Amount
                 </button>
                 <button
                     onClick={handleAddAsync}
-                    className="app-btn" 
+                    className="app-btn"
                     aria-label="Add async amount"
                 >
                     Add Async Amount

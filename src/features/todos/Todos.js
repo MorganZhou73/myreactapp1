@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectTodos, addTodo, toggleTodo } from './todosSlice';
+import useFetch from '../../components/useFetch';
 import './Todos.css';
 
 function Todos() {
@@ -18,6 +19,8 @@ function Todos() {
     const handleToggleTodo = (id) => {
         dispatch(toggleTodo(id));
     };
+
+    const { data } = useFetch("https://jsonplaceholder.typicode.com/todos");
 
     return (
         <div>
@@ -38,6 +41,12 @@ function Todos() {
                             Toggle Status
                         </button>
                     </li>
+                ))}
+            </ul>
+            <hr />
+            <ul>
+                {data?.slice(0, 5).map((item) => (
+                    <li key={item.id}>{item.id} - {item.title}</li>
                 ))}
             </ul>
         </div>
