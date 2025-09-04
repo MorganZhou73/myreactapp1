@@ -23,11 +23,14 @@ This is the React app to demo communications between components; Global Redux St
 - init app
 	cd React
     npm init react-app myreactapp1
-
     cd myreactapp1
-	npm install @reduxjs/toolkit react-redux
-    npm start
 
+    npm install @reduxjs/toolkit react-redux
+    npm install recharts
+    npm install react-router-dom
+    
+    npm start
+  
 ## Available Scripts
 
 In the project directory, you can run:
